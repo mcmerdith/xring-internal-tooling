@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-gray-700 text-gray-200`}>
-        <nav className="flex items-center gap-4 bg-slate-600 p-4 ">
+    <html lang="en" className="dark">
+      <body className={cn(inter.className, "bg-background text-foreground")}>
+        <nav className="flex items-center gap-4 bg-accent p-4 text-accent-foreground ">
           <Link href="/">
             <Image
               src="/x-ring-logo.png"
@@ -29,11 +30,14 @@ export default function RootLayout({
               className="aspect-auto max-h-24 max-w-24"
             />
           </Link>
-          <Link href="/product-editor">
-            <strong>Product Editor</strong>
+          <Link href="/product-editor" className="font-bold">
+            Product Editor
+          </Link>
+          <Link href="/website/form" className="font-bold">
+            Website Form
           </Link>
         </nav>
-        {children}
+        <main className="container p-4">{children}</main>
       </body>
     </html>
   );
